@@ -3,17 +3,23 @@ package com.example.bookmovie.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.bookmovie.models.Booking;
+import com.example.bookmovie.models.Seat;
+import com.example.bookmovie.models.SeatMatrix;
+import com.example.bookmovie.models.Show;
 import com.example.bookmovie.repositories.BookingRepository;
 
 @Service
-public class BookingServiceImpl implements BookingService{
+public class BookingServiceImpl implements BookingService {
 
+    @Autowired
+    private ShowService showService;
     private BookingRepository bookingRepository;
 
-    public BookingServiceImpl(BookingRepository bookingRepository){
+    public BookingServiceImpl(BookingRepository bookingRepository) {
         this.bookingRepository = bookingRepository;
     }
 
@@ -24,6 +30,23 @@ public class BookingServiceImpl implements BookingService{
 
     @Override
     public Booking addBooking(Booking Booking) {
+
+        // ShowService showService;
+        List<Show> shows = showService.getShows();
+        // Seatmatrix [] sms = shows.
+        // SeatMatrix sm[];
+        // Show[] shows = shows.toArray(new Show[show.size()])
+        for (Show show : shows) {
+            if (show.getShowId() == Booking.getShowId()) {
+                Integer sm = show.getSeatMatrixID();
+
+                // sm.confirmSeats(Booking.getSeat());
+                // Seat s[] = Booking.getSeatsBooked();
+                for (Seat s : Booking.getSeatsBooked()) {
+                    // sm.confirmSeats(s.getSeatId());
+                }
+            }
+        }
         return bookingRepository.save(Booking);
     }
 
@@ -32,5 +55,5 @@ public class BookingServiceImpl implements BookingService{
         Optional<Booking> result = bookingRepository.findById(bookingId);
         return result.get();
     }
-    
+
 }

@@ -2,35 +2,49 @@ package com.example.bookmovie.models;
 
 import java.util.Date;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
 
 @Entity
-@Table(name="Movie")
+@Table(name = "Movie")
 public class Movie {
     @Id
-    @Column(name="movieId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @Column(name = "movieId")
     private Integer movieId;
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
-    @Column(name="genre")
+    @Column(name = "genre")
     private String genre;
-    @Column(name="releaseDate")
-    private Date releaseDate;
-    @Column(name="description")
+    @Column(name = "durationMins")
+    private Integer durationMins;
+    @Column(name = "releaseDate")
+    private String releaseDate;
+    @Column(name = "description")
     private String description;
-    
+
+    @Lob
+    @Column(name = "imageData")
+    private String imageData;
+
     public Movie() {
     }
 
-    public Movie(Integer movieId, String name, String genre, Date releaseDate, String description) {
+    public Movie(Integer movieId, String name, String genre, Integer durationMins, String releaseDate,
+            String description,
+            String imageData) {
         this.movieId = movieId;
         this.name = name;
         this.genre = genre;
+        this.durationMins = durationMins;
         this.releaseDate = releaseDate;
         this.description = description;
+        this.imageData = imageData;
     }
 
     public Integer getMovieId() {
@@ -45,7 +59,11 @@ public class Movie {
         return genre;
     }
 
-    public Date getReleaseDate() {
+    public Integer getDurationMins() {
+        return durationMins;
+    }
+
+    public String getReleaseDate() {
         return releaseDate;
     }
 
@@ -65,7 +83,7 @@ public class Movie {
         this.genre = genre;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
 
@@ -73,5 +91,15 @@ public class Movie {
         this.description = description;
     }
 
-    
+    public String getImageData() {
+        return imageData;
+    }
+
+    public void setImageData(String imageData) {
+        this.imageData = imageData;
+    }
+
+    public void setDurationMins(Integer durationMins) {
+        this.durationMins = durationMins;
+    }
 }

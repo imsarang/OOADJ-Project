@@ -5,16 +5,19 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.example.bookmovie.models.Login;
 import com.example.bookmovie.models.User;
+import com.example.bookmovie.payloadResponse.LoginMessage;
+import com.example.bookmovie.repositories.LoginRepository;
 import com.example.bookmovie.repositories.UserRepository;
 
 @Service
-public class UserServiceImpl implements UserService{
-
+public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
+    private LoginRepository loginRepository;
 
-    public UserServiceImpl(UserRepository userRepository){
+    public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -34,7 +37,28 @@ public class UserServiceImpl implements UserService{
         return userRepository.findAll();
     }
 
+    @Override
+    public LoginMessage loginUser(Login login) {
+        User user1 = userRepository.findByEmail(login.getEmail());
+        if (user1 != null) {
+            String password = user1.getPassword();
+            boolean isRight = false;
+            if (password == login.getPassword())
+                isRight = true;
+            else
+                return new LoginMessage("ERROR PASSWORD MATCH", false);
+            if (isRight) {
+                loginRepository.save(login);
+                return new LoginMessage("LOGIN SUCCESS", true);
+            } else {
+                return new LoginMessage("LOGIN FAILED", false);
+            }
+        } else
+            return new LoginMessage("USER NOT FOUND", false);
+    }
 
-    
-    
+    @Override
+    public void logoutUser(User user) {
+
+    }
 }

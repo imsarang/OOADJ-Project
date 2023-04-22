@@ -1,26 +1,28 @@
 package com.example.bookmovie.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-@Table(name="User")
-
+@Table(name = "Users")
 public class User {
     @Id
-    @Column(name="userId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @Column(name = "userId")
     private Integer userId;
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
-    @Column(name="email")
+    @Column(name = "email")
     private String email;
-    @Column(name="password")
+    @Column(name = "password")
     private String password;
-    @Column(name="status")
+    @Column(name = "status")
     private String status;
-    
+
     public User() {
     }
 
@@ -71,7 +73,5 @@ public class User {
     public void setStatus(String status) {
         this.status = status;
     }
-    
-    
-    
+
 }

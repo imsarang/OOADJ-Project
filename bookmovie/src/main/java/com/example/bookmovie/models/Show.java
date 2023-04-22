@@ -1,27 +1,34 @@
 package com.example.bookmovie.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-@Table(name="ShowS")
+@Table(name = "ShowS")
 public class Show {
     @Id
-    @Column(name="showId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @Column(name = "showId")
     Integer showId;
-    @Column(name="theatreId")
+    @Column(name = "theatreId")
     Integer theatreId;
-    @Column(name="movieId")
+    @Column(name = "movieId")
     Integer movieId;
-    @Column(name="date")
+    @Column(name = "date")
     String date;
-    @Column(name="startTime")
+    @Column(name = "startTime")
     String startTime;
-    @Column(name="endTime")
+    @Column(name = "endTime")
     String endTime;
-    
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "seatMatrixId")
+    Integer seatMatrixID;
+
     public Show() {
     }
 
@@ -81,5 +88,13 @@ public class Show {
     public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
-    
+
+    public Integer getSeatMatrixID() {
+        return seatMatrixID;
+    }
+
+    public void setSeatMatrixID(Integer seatMatrixID) {
+        this.seatMatrixID = seatMatrixID;
+    }
+
 }
