@@ -32,14 +32,19 @@ public class Show {
     public Show() {
     }
 
-    public Show(Integer showId, Integer theatreId, Integer movieId, String date, String startTime, String endTime) {
+    
+
+    public Show(Integer showId, Integer theatreId, Integer movieId, String date, String startTime, String endTime,
+            Integer seatMatrixID) {
         this.showId = showId;
         this.theatreId = theatreId;
         this.movieId = movieId;
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.seatMatrixID = seatMatrixID;
     }
+
 
     public Integer getShowId() {
         return showId;

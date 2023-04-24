@@ -16,4 +16,7 @@ public interface UserService {
     public void logoutUser(User user);
 
     public User getUserById(Integer userId);
+    public boolean deleteUser(Integer userId);
+    public User getUserByEmailId(String email);
 }
+

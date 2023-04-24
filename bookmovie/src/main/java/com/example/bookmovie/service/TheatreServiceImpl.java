@@ -35,4 +35,14 @@ public class TheatreServiceImpl implements TheatreService {
         return result.get();
     }
     
+    @Override
+    public boolean deleteTheatre(Integer theatreId) {
+        theatreRepository.deleteById(theatreId);
+
+        if (theatreRepository.findById(theatreId) != null) {
+            return true;
+        }
+
+        return false;
+    }
 }

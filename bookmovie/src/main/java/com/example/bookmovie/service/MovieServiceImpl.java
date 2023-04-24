@@ -61,4 +61,14 @@ public class MovieServiceImpl implements MovieService {
         movieRepository.save(movie);
     }
 
+    @Override
+    public boolean deleteMovie(Integer movieId) {
+        movieRepository.deleteById(movieId);
+
+        if (movieRepository.findById(movieId) != null) {
+            return true;
+        }
+
+        return false;
+    }
 }

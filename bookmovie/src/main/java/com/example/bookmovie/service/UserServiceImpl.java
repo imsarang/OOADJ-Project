@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public LoginMessage loginUser(Login login) {
-        User user1 = userRepository.findByEmail(login.getEmail());
+        User user1 = userRepository.findByEmailId(login.getEmail());
         if (user1 != null) {
             String password = user1.getPassword();
             boolean isRight = false;
@@ -60,5 +60,22 @@ public class UserServiceImpl implements UserService {
     @Override
     public void logoutUser(User user) {
 
+    }
+
+    @Override
+    public boolean deleteUser(Integer userId) {
+        userRepository.deleteById(userId);
+
+        if (userRepository.findById(userId) != null) {
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public User getUserByEmailId(String email) {
+        User result = userRepository.findByEmailId(email);
+        return result;
     }
 }

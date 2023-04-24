@@ -8,6 +8,7 @@ public interface ShowService {
     public List<Show> getShows();
     public Show addShow(Show show);
     public Show getShowById(Integer showId);
-    // public Show getShowByTheatreId(Integer theatreId);
-    // public Show getShowByMovieId(Integer movieId);
+    public List<Show> getShowByTheatreId(Integer theatreId);
+    public List<Show> getShowByMovieId(Integer movieId);
+    public boolean deleteShow(Integer showId);
 }

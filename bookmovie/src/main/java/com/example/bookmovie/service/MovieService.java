@@ -14,4 +14,5 @@ public interface MovieService {
             MultipartFile file);
 
     public Movie getMovieById(Integer movieId);
+    public boolean deleteMovie(Integer movieId);
 }

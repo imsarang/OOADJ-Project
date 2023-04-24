@@ -3,6 +3,7 @@ package com.example.bookmovie.controllers;
 import java.sql.Date;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.bookmovie.models.Movie;
 import com.example.bookmovie.service.MovieService;
@@ -46,4 +48,14 @@ public class MovieController {
         return movieService.getMovieById(movieId);
     }
 
+    @DeleteMapping("/deleteMovies/{movieId}")
+    public String deleteBooking(@PathVariable Integer movieId, RedirectAttributes redirectAttributes) {
+        if (movieService.deleteMovie(movieId)) {
+            redirectAttributes.addFlashAttribute("message", "Delete Success");
+        } else {
+            redirectAttributes.addFlashAttribute("message", "Delete Failure");
+        }
+
+        return "redirect:/movies";
+    }
 }

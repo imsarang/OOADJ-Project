@@ -33,16 +33,27 @@ public class ShowServiceImpl implements ShowService {
         return result.get();
     }
 
-    // @Override
-    // public Show getShowByTheatreId(Integer theatreId) {
-    //     Optional<Show> result = showRepository.findByMovieId(theatreId);
-    //     return result.get();
-    // }
+    @Override
+    public List<Show> getShowByTheatreId(Integer theatreId) {
+        List<Show> result = showRepository.findByTheatreId(theatreId);
+        return result;
+    }
 
-    // @Override
-    // public Show getShowByMovieId(Integer movieId) {
-    //     Optional<Show> result = showRepository.findByTheatreId(movieId);
-    //     return result.get();
-    // }
+    @Override
+    public List<Show> getShowByMovieId(Integer movieId) {
+        List<Show> result = showRepository.findByMovieId(movieId);
+        return result;
+    }
+
+    @Override
+    public boolean deleteShow(Integer showId) {
+        showRepository.deleteById(showId);
+
+        if (showRepository.findById(showId) != null) {
+            return true;
+        }
+
+        return false;
+    }
     
 }

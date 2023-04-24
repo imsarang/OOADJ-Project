@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.bookmovie.models.Booking;
 import com.example.bookmovie.models.Seat;
-import com.example.bookmovie.models.SeatMatrix;
 import com.example.bookmovie.models.Show;
 import com.example.bookmovie.repositories.BookingRepository;
 
@@ -56,4 +55,14 @@ public class BookingServiceImpl implements BookingService {
         return result.get();
     }
 
+    @Override
+    public boolean deleteBooking(Integer bookingId) {
+        bookingRepository.deleteById(bookingId);
+
+        if (bookingRepository.findById(bookingId) != null) {
+            return true;
+        }
+
+        return false;
+    }
 }

@@ -12,35 +12,39 @@ import javax.persistence.Table;
 import org.hibernate.mapping.List;
 
 @Entity
-@Table(name = "Booking")
+@Table(name="Booking")
 public class Booking {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // @Column(name = "bookingId")
     private Integer bookingId;
-    @Column(name = "showId")
+    @Column(name="showId")
     private Integer showId;
-    @Column(name = "date")
+    @Column(name="date")
     private Date date;
-
-    private Seat seatsBooked[];
-
+    @Column(name="colNo")
+    private String colNo;
+    @Column(name="seatNo")
+    private Integer seatNo;
+    @Column(name="price")
+    private Double price;
+    
     public Booking() {
     }
 
-    public Booking(Integer bookingId, Integer showId, Date date, Seat seats[]) {
+    public Booking(Integer bookingId, Integer showId, Date date, String colNo, Integer seatNo, Double price) {
         this.bookingId = bookingId;
         this.showId = showId;
         this.date = date;
-        this.seatsBooked = seats;
+        this.colNo = colNo;
+        this.seatNo = seatNo;
+        this.price = price;
     }
 
     public Integer getBookingId() {
         return bookingId;
     }
 
-    public Integer getTheatreId() {
+    public Integer getShowId() {
         return showId;
     }
 
@@ -48,11 +52,23 @@ public class Booking {
         return date;
     }
 
+    public String getColNo() {
+        return colNo;
+    }
+
+    public Integer getSeatNo() {
+        return seatNo;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
     public void setBookingId(Integer bookingId) {
         this.bookingId = bookingId;
     }
 
-    public void setTheatreId(Integer showId) {
+    public void setShowId(Integer showId) {
         this.showId = showId;
     }
 
@@ -60,20 +76,17 @@ public class Booking {
         this.date = date;
     }
 
-    public Integer getShowId() {
-        return showId;
+    public void setColNo(String colNo) {
+        this.colNo = colNo;
     }
 
-    public void setShowId(Integer showId) {
-        this.showId = showId;
+    public void setSeatNo(Integer seatNo) {
+        this.seatNo = seatNo;
     }
 
-    public Seat[] getSeatsBooked() {
-        return seatsBooked;
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
-    public void setSeatsBooked(Seat[] seatsBooked) {
-        this.seatsBooked = seatsBooked;
-    }
-
+    
 }
